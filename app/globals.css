@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-canvas: #0b0d10;
+  --color-surface: #111418;
+  --color-recess: #090b0d;
+  --color-line: #22272e;
+  --color-line-strong: #343b44;
+  --color-ink: #e8eaed;
+  --color-dim: #a7afb7;
+  --color-mute: #8b939c;
+  --color-phosphor: #5ee0b5;
+  --color-phosphor-dim: #16352c;
+  --color-phosphor-edge: #2c7a5e;
+  --color-degraded: #e2a84a;
+  --color-degraded-dim: #3a2e16;
+  --color-offline: #e25b4a;
+  --color-offline-dim: #3c1c1a;
+  --color-unknown: #191d22;
+  --font-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+  background: #0b0d10;
+}
+
+body {
+  min-height: 100%;
+  background: #0b0d10;
+  color: #e8eaed;
+  font-family: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, sans-serif;
+}
+
+::selection {
+  background: #16352c;
+  color: #e8eaed;
+}
+
+:focus-visible {
+  outline: 1px solid #5ee0b5;
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #343b44 transparent;
+}
+
+.num {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #8b939c;
+}
+
+@keyframes wash {
+  0% {
+    background-color: color-mix(in srgb, #5ee0b5 16%, transparent);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes beat-still {
+  0%,
+  70% {
+    background-color: #d8fff0;
+  }
+  100% {
+    background-color: #5ee0b5;
+  }
+}
+
+@keyframes lamp-flash {
+  0% {
+    outline: 1px solid #5ee0b5;
+    outline-offset: 1px;
+  }
+  100% {
+    outline: 1px solid transparent;
+    outline-offset: 1px;
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.num-flash {
+  animation: wash 600ms ease-out;
+}
+
+.heartbeat {
+  animation: beat 400ms ease-out;
+}
+
+.lamp-flash {
+  animation: lamp-flash 600ms ease-out;
+}
+
+.drawer-in {
+  animation: drawer-in 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .num-flash,
+  .lamp-flash,
+  .drawer-in {
+    animation: none;
+  }
+
+  .heartbeat {
+    animation: beat-still 600ms linear;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #e8eaed;
+  box-shadow: 0 0 0 1000px #090b0d inset;
+}
